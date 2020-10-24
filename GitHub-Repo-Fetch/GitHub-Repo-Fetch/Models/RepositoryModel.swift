@@ -5,6 +5,9 @@
 //  Created by Nick Arner on 10/21/20.
 //
 
+/* This is a genearted JSON model produced by the JSON response from the GitHub API call. It
+ was generated with https://app.quicktype.io/ */
+
 import Foundation
 
 // MARK: - RepositoryElement

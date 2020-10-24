@@ -9,7 +9,7 @@ class RepositoryCell: UICollectionViewCell {
     let bgView = UIView()
     let imageView = UIImageView()
     let nameLabel = UILabel()
-    let noteLabel = UILabel()
+    let ownerLabel = UILabel()
     let updateIndicator = UIView()
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,13 +48,14 @@ class RepositoryCell: UICollectionViewCell {
         self.addSubview(updateIndicator)
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.font = UIFont.systemFont(ofSize: 17)
+        nameLabel.textColor = UIColor(red: 0.11, green: 0.129, blue: 0.18, alpha: 1)
+        nameLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 17)
         labelStackView.addArrangedSubview(nameLabel)
         
-        noteLabel.font = UIFont.systemFont(ofSize: 12)
-        noteLabel.alpha = 0.3
-        noteLabel.translatesAutoresizingMaskIntoConstraints = false
-        labelStackView.addArrangedSubview(noteLabel)
+        ownerLabel.textColor = UIColor(red: 0.11, green: 0.129, blue: 0.18, alpha: 0.64)
+        ownerLabel.font = UIFont(name: "SFProDisplay-Regular", size: 12)
+        ownerLabel.translatesAutoresizingMaskIntoConstraints = false
+        labelStackView.addArrangedSubview(ownerLabel)
         
         setupConstraints(labelStackView: labelStackView)
     }
@@ -70,7 +71,7 @@ class RepositoryCell: UICollectionViewCell {
             labelStackView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             labelStackView.firstBaselineAnchor.constraint(equalTo: self.topAnchor, constant: 32.0),
             
-            updateIndicator.centerYAnchor.constraint(equalTo: noteLabel.centerYAnchor),
+            updateIndicator.centerYAnchor.constraint(equalTo: ownerLabel.centerYAnchor),
             updateIndicator.centerXAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -16),
             updateIndicator.widthAnchor.constraint(equalToConstant: 10),
             updateIndicator.heightAnchor.constraint(equalToConstant: 10)
@@ -108,7 +109,7 @@ class RepositoryCell: UICollectionViewCell {
     var repository: Repository? {
         didSet {
             nameLabel.text = repository?.name
-            noteLabel.text = repository?.owner.login
+            ownerLabel.text = repository?.owner.login
             imageView.kf.setImage(with: URL(string: (repository?.owner.avatarURL)!))
         }
     }

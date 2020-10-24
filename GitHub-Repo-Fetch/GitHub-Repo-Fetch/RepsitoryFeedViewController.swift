@@ -41,7 +41,7 @@ class RepsitoryFeedViewController: UIViewController,UICollectionViewDelegate,UIC
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        footerView?.stopAnimate()
+        footerView?.stopAnimating()
     }
 
     
@@ -87,7 +87,11 @@ class RepsitoryFeedViewController: UIViewController,UICollectionViewDelegate,UIC
         AF.request(url, headers: headers)
             .responseJSON { [self] response in
             do {
-                if let headers = response.response?.allHeaderFields as? [String: String]{
+                if let headers = response.response?.allHeaderFields as? [String: String] {
+                    /* Extract the link to the "next" page of public repositories.
+                    This initiall call only fetches 100 repositories at a time, but it
+                    does provide a link to fetch the next page of repositories when the
+                    app is ready to fetch and display them */
                     let header = headers["Link"]
                     let link = header?.slice(from: "<", to: ">")
                     nextLink = link
@@ -97,7 +101,7 @@ class RepsitoryFeedViewController: UIViewController,UICollectionViewDelegate,UIC
                 fetchedRepositories.append(contentsOf: repositories)
             
                 DispatchQueue.main.async {
-                    self.footerView?.stopAnimate()
+                    self.footerView?.stopAnimating()
                     self.collectionView.reloadData()
                 }
             } catch {
@@ -109,7 +113,7 @@ class RepsitoryFeedViewController: UIViewController,UICollectionViewDelegate,UIC
     
     // MARK: - UICollectionViewDelegate
     
-    //compute the scroll value and play witht the threshold to get desired effect
+    // Compute the scroll value and play witht the threshold to get desired effect
      func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let threshold   = 100.0 ;
         let contentOffset = scrollView.contentOffset.y;
@@ -126,7 +130,7 @@ class RepsitoryFeedViewController: UIViewController,UICollectionViewDelegate,UIC
         print("pullRation:\(pullRatio)")
     }
     
-    //compute the offset and call the load method
+    // Compute the offset and call the load method
      func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let contentOffset = scrollView.contentOffset.y;
         let contentHeight = scrollView.contentSize.height;
@@ -138,7 +142,7 @@ class RepsitoryFeedViewController: UIViewController,UICollectionViewDelegate,UIC
             guard let footerView = self.footerView, footerView.isAnimatingFinal else { return }
             print("load more trigger")
             self.isLoading = true
-            self.footerView?.startAnimate()
+            self.footerView?.startAnimating()
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer:Timer) in
                 self.fetchMoreRepositories()
                 self.isLoading = false
@@ -178,7 +182,7 @@ class RepsitoryFeedViewController: UIViewController,UICollectionViewDelegate,UIC
     
      func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
         if elementKind == UICollectionView.elementKindSectionFooter {
-            self.footerView?.stopAnimate()
+            self.footerView?.stopAnimating()
         }
     }
     
@@ -200,17 +204,15 @@ class RepsitoryFeedViewController: UIViewController,UICollectionViewDelegate,UIC
     // MARK: UI Helper Methods
 
     func prepareCollectionView() {
-        collectionView.collectionViewLayout = ColumnFlowLayout()
-        collectionView?.register(CollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
-        
-        
+        collectionView?.register(UINib(nibName: "CollectionViewHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
+
         collectionView?.register(UINib(nibName: "CollectionViewFooter", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerViewReuseIdentifier)
 
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = UIColor(red: 0.898, green: 0.898, blue: 0.898, alpha: 1)
+
         collectionView.alwaysBounceVertical = true
     }
-
      
     // MARK: - Alert
 

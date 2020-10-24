@@ -26,6 +26,7 @@
 		51A7D9F925410CDE00240235 /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A7D9F825410CDE00240235 /* ColumnFlowLayout.swift */; };
 		51A7D9FE2541183200240235 /* CollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A7D9FD2541183200240235 /* CollectionViewHeader.swift */; };
 		51A7DA06254123CE00240235 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A7DA05254123CE00240235 /* UIColor+Extension.swift */; };
+		51C7EF4625448BBD005121CD /* CollectionViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51C7EF4525448BBD005121CD /* CollectionViewHeader.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		51A7D9F825410CDE00240235 /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 		51A7D9FD2541183200240235 /* CollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHeader.swift; sourceTree = "<group>"; };
 		51A7DA05254123CE00240235 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		51C7EF4525448BBD005121CD /* CollectionViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewHeader.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				51A7D9FD2541183200240235 /* CollectionViewHeader.swift */,
+				51C7EF4525448BBD005121CD /* CollectionViewHeader.xib */,
 				51032EA925429CB300C20253 /* CollectionViewFooter.swift */,
 				51032EA825429CB300C20253 /* CollectionViewFooter.xib */,
 			);
@@ -303,6 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51C7EF4625448BBD005121CD /* CollectionViewHeader.xib in Resources */,
 				51957C31253FE2880067992E /* LaunchScreen.storyboard in Resources */,
 				51957C2E253FE2880067992E /* Assets.xcassets in Resources */,
 				51032EAA25429CB300C20253 /* CollectionViewFooter.xib in Resources */,

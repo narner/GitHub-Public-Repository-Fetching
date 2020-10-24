@@ -1,4 +1,9 @@
-
+//
+//  CollectionViewFooter.swift
+//  GitHub-Repo-Fetch
+//
+//  Created by Nick Arner on 10/21/20.
+//
 
 
 import Foundation
@@ -27,24 +32,24 @@ class CollectionViewFooter : UICollectionReusableView {
         self.refreshControlIndicator?.transform = CGAffineTransform.init(scaleX: scaleFactor, y: scaleFactor)
     }
     
-    //reset the animation
+    //Reset the animation
     func prepareInitialAnimation() {
         self.isAnimatingFinal = false
         self.refreshControlIndicator?.stopAnimating()
         self.refreshControlIndicator?.transform = CGAffineTransform.init(scaleX: 0.0, y: 0.0)
     }
     
-    func startAnimate() {
+    func startAnimating() {
         self.isAnimatingFinal = true
         self.refreshControlIndicator?.startAnimating()
     }
     
-    func stopAnimate() {
+    func stopAnimating() {
         self.isAnimatingFinal = false
         self.refreshControlIndicator?.stopAnimating()
     }
     
-    //final animation to display loading
+    // Final animation to display loading
     func animateFinal() {
         if isAnimatingFinal {
             return
